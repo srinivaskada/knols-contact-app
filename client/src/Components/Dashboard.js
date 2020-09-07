@@ -1,5 +1,7 @@
 import React, { useEffect, useContext } from 'react'
 import { AppBar, Toolbar, IconButton, Typography, Button, Avatar, TableContainer, Box, Table, TableHead, TableCell, TableBody, TableRow, Paper } from '@material-ui/core'
+import { ExitToApp } from '@material-ui/icons'
+
 import { BASE_URL } from '../environment'
 import { AppStateContext } from '../Contexts/AppStateContext';
 import Axios from 'axios';
@@ -7,7 +9,7 @@ import Axios from 'axios';
 const Dashboard = () => {
   const {
     setState,
-    state: { token, users }
+    state: { token, userDetails, users }
   } = useContext(AppStateContext)
   const loadUsers = async () => {
     try {
@@ -34,10 +36,16 @@ const Dashboard = () => {
       <AppBar position='static'>
         <Toolbar>
           <IconButton color='inherit' aria-label='menu'>
-            <Avatar alt='User' src='/static/images/avatar/1.jpg' />
+            <Avatar alt='User' src={userDetails.picture} />
           </IconButton>
-          <Typography variant='h6'>News</Typography>
-          <Button color='inherit'>Login</Button>
+          <Box display='flex' flexDirection='column'>
+            <Typography variant='h6'>{userDetails.name}</Typography>
+            <Typography variant='span'>{userDetails.email}</Typography>
+          </Box>
+          <Box flex='1'></Box>
+          <IconButton color='inherit'>
+            <ExitToApp />
+          </IconButton>
         </Toolbar>
       </AppBar>
       <Box>

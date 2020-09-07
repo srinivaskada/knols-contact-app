@@ -52,6 +52,7 @@ const socialLogin = async (req, res, next) => {
       token: userToken,
       userDetails: {
         id: user._id,
+        name: user.name,
         email: user.email,
         picture: user.picture
       }
