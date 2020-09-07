@@ -1,20 +1,37 @@
-import React from 'react'
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
-import logo from './logo.svg'
+import React, { Component } from 'react'
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import './App.css'
-import LoginByGoogle from './Components/LoginByGoogle'
+import Login from './Components/Login'
+import Dashboard from './Components/Dashboard'
 
-const Dashboard = () => <div>I am Dashboard</div>
 
-function App() {
+const ProtectedRoute = ({ component: Component, ...rest }) => {
+  return (
+    <Route
+      {...rest}
+      render={props => isAuthorized() ? <Component {...props} /> : <Redirect to={{
+        pathname: '/',
+        state: props.location
+      }} />}
+    />
+  )
+}
+const isAuthorized = () => localStorage.getItem('token') !== null
+
+const App = () => {
   return (
     <>
       <div className='App'>
         <Router>
           <div className='container'>
             <Switch>
-              <Route exact path='/' component={LoginByGoogle}></Route>
-              <Route path='/Dashboard' component={Dashboard} />
+              <Route
+                exact
+                path="/"
+                render={() => <Redirect to={isAuthorized() ? '/dashboard' : "/login"} />}
+              />
+              <Route exact path='/login' component={Login}></Route>
+              <Route path='/dashboard' component={Dashboard} />
             </Switch>
           </div>
         </Router>
