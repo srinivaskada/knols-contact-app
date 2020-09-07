@@ -1,8 +1,9 @@
 const express = require('express')
 const cors = require('cors')
 const bodyParser = require('body-parser')
-const morgan = require('morgan');
-const mongoose = require('mongoose');
+const morgan = require('morgan')
+const mongoose = require('mongoose')
+const path = require('path')
 
 const { PORT, MONGO_URI, MONGO_DB_NAME } = require('./config');
 
@@ -42,12 +43,12 @@ app.use('/api/users', authorization, users)
 app.use(errorMiddleware)
 
 // Serve static assets if in production
-if (process.env.NODE_ENV === 'production') {
+if (true || process.env.NODE_ENV === 'production') {
   // Set static folder
   app.use(express.static('client/build'));
 
   app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    res.sendFile(path.resolve(__dirname, '../../', 'client', 'build', 'index.html'));
   });
 }
   
