@@ -35,6 +35,11 @@ const LoginByGoogle = ({ history }) => {
           <div className='col-sm-4'>
             <GoogleLogin
               clientId='1091835832800-0dodt6oob19lk2tso8lgk5ccv9j8su4g.apps.googleusercontent.com'
+              scope={[
+                'https://www.googleapis.com/auth/userinfo.profile',
+                'https://www.googleapis.com/auth/userinfo.email',
+                'https://www.googleapis.com/auth/user.phonenumbers.read',
+              ].join(' ')}
               buttonText='Login with Google'
               onSuccess={responseGoogle}
               onFailure={responseGoogle}
