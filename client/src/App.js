@@ -23,17 +23,15 @@ const App = () => {
     <>
       <div className='App'>
         <Router>
-          <div className='container'>
-            <Switch>
-              <Route
-                exact
-                path="/"
-                render={() => <Redirect to={isAuthorized() ? '/dashboard' : "/login"} />}
-              />
-              <Route exact path='/login' component={Login}></Route>
-              <Route path='/dashboard' component={Dashboard} />
-            </Switch>
-          </div>
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={() => <Redirect to={isAuthorized() ? '/dashboard' : "/login"} />}
+            />
+            <Route exact path='/login' component={Login}></Route>
+            <Route path='/dashboard' component={Dashboard} />
+          </Switch>
         </Router>
       </div>
     </>

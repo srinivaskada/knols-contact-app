@@ -22,8 +22,9 @@ const LoginByGoogle = ({ onSuccess }) => {
     signup(response)
   }
   return (
-    <>
+    <div width='100%'>
       <GoogleLogin
+        wi
         clientId='1091835832800-0dodt6oob19lk2tso8lgk5ccv9j8su4g.apps.googleusercontent.com'
         scope={[
           'https://www.googleapis.com/auth/userinfo.profile',
@@ -34,7 +35,7 @@ const LoginByGoogle = ({ onSuccess }) => {
         onSuccess={responseGoogle}
         onFailure={responseGoogle}
       />
-    </>
+    </div>
   )
 }
 
