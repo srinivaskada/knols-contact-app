@@ -6,6 +6,7 @@ const getUsers = async (req, res, next) => {
       name: 1,
       email: 1,
       phoneNumber: 1,
+      picture: 1,
     })
     res.status(200).json({
       data: users
